@@ -39,7 +39,7 @@
 
 #### <a href="#scss-nomenclature-anatomy" name="scss-nomenclature-anatomy">#</a> Classname Anatomy
 
-```scss
+```css
 .cn-x-class-name {...}
 ```
 1. `cn-` company name name-spacing prefix
@@ -48,44 +48,48 @@
 
 ##### <a name="scss-nomenclature-blocks"></a>BEM Blocks
 
-```scss
+```css
 .cn-x-block {...}
 ```
 
 ##### <a name="scss-nomenclature-elements"></a>BEM Elements
 
-```scss
+```css
 .cn-x-block__element {...}
 ```
 
 ##### <a name="scss-nomenclature-modifiers"></a>BEM Modifiers
 
-```scss
+```css
 .cn-x-block--modifier {...}
 ```
 
 ##### <a name="scss-nomenclature-modified-elements"></a>BEM-Modified Elements
 
-```scss
+```css
 .cn-x-block--modifier .cn-x-block__element {...}
 ```
 
 ##### Object/Component State
 
-```scss
+```css
 .cn-x-block.cn-is-state {...}
 ```
 
 ##### Object/Component Element State
 
-```scss
+```css
 .cn-x-block.cn-is-state .cn-x-block__element {...}
 ```
 
 ##### Media Breakpoint Modifiers
 
-```scss
-.cn-x-block@bp {...}
+```css
+.cn-x-block\@bp {...}
+```
+
+```html
+<tag class="cn-x-block@bp">
 ```
 
 ##### <a name="scss-nomenclature-anatomy-note"></a>Note
@@ -126,7 +130,7 @@ HN infix: `o`, `l` (layout)
 
 ###### Anatomy
 
-```scss
+```css
 .cn-u-pn-v {...}
 ```
 
@@ -195,14 +199,14 @@ A classname may have at most two levels: [block](#scss-nomenclature-blocks) and 
 
 Selectors must be as flat as possible, with the exception of :pseudo-selectors and [State Classes](#scss-nomenclature-types-state-classes): an [element's](#scss-nomenclature-elements) declaration should not need to be nested within, or a [modifier's](#scss-nomenclature-modifiers) declaration appended to, its [block](#scss-nomenclature-blocks) to apply its properties, even if this would render its styles incomplete; elements and modifiers should not be used outside of the context of their block.
 
-```scss
-// Valid
+```css
+/* Valid */
 .cn-x-block__element {...}
 .cn-x-block--modifier {...}
 ```
 
-```scss
-// Invalid
+```css
+/* Invalid */
 .cn-x-block .cn-x-block__element {...}
 .cn-x-block.cn-x-block--modifier {...}
 ```
@@ -232,12 +236,12 @@ An Object's [Static props](#scss-file-structure-properties-classes-static) **may
 
 [State Classes](#scss-nomenclature-types-state-classes) should not be assigned styles except in composition.
 
-```scss
-.cn-x-block.cn-is-state {...} // Valid
+```css
+.cn-x-block.cn-is-state {...} /* Valid */
 ```
 
-```scss
-.cn-is-state {...} // Invalid
+```css
+.cn-is-state {...} /* Invalid */
 ```
 
 #### <a href="#scss-composition-examples" name="scss-composition-examples">#</a> Examples
@@ -284,7 +288,7 @@ All styles under a [block](#scss-nomenclature-blocks) are nested with the SASS `
 ```
 
 ```css
-// Compiled CSS
+/* Compiled CSS */
 .block__element { color: #000; }
 ```
 
@@ -558,7 +562,7 @@ $theme-btn: (
 ```
 
 ```css
-// Compiled CSS
+/* Compiled CSS */
 .cn-x-btn { background-color: #00f; }
 ```
 
@@ -596,7 +600,7 @@ $theme-btn: (
 ```
 
 ```css
-// Compiled CSS
+/* Compiled CSS */
 .cn-x-btn { background-color: #00f; }
 .cn-x-btn:hover { background-color: #7f7fff; }
 .cn-x-btn:active { background-color: #00f; } // gracefully fails to value at 'ø fill'
@@ -645,7 +649,7 @@ $theme-btn: (
 ```
 
 ```css
-// Compiled CSS
+/* Compiled CSS */
 .cn-x-btn--t-primary { background-color: #00f; }
 .cn-x-btn--t-primary:hover { background-color: magenta; }
 
@@ -688,7 +692,7 @@ $theme-btn-secondary: (
 ```
 
 ```css
-// Compiled CSS
+/* Compiled CSS */
 .cn-x-btn--t-primary { background-color: #00f; }
 .cn-x-btn--t-primary:hover { background-color: magenta; }
 
@@ -750,7 +754,7 @@ $theme-btn: (
 ```
 
 ```css
-// Compiled CSS
+/* Compiled CSS */
 .cn-x-btn { background-color: #00f; }
 .cn-x-btn:hover { background-color: #7f7fff; }
 ```
