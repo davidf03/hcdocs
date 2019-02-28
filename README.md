@@ -147,8 +147,9 @@ For more information, see [§Composition.ClassTypes.Utilities](#scss-composition
 
 ###### <a name="scss-nomenclature-types-utilities-orders"></a>Orders
 
-Whereas the order of other [class-structures](#scss-nomenclature-anatomy-note) depends upon the number of class selectors present, the distinction between 'higher-' and 'lower-order' Utilities depends, by analogy, upon the number of properties present, with lower-order Utilities containing only one property, and higher- more than one.  
-    Classifying Utilities in this way also hints at a soft but useful benchmark helping to delineate between Utilities and lower-order Objects.
+Whereas the order of other [class-structures](#scss-nomenclature-anatomy-note) depends upon the number of class selectors present, the distinction between 'higher-' and 'lower-order' Utilities depends, by analogy, upon the number of properties present, with lower-order Utilities containing only one property, and higher- more than one.
+
+Classifying Utilities in this way also hints at a soft but useful benchmark helping to delineate between Utilities and lower-order Objects.
 
 ##### <a name="scss-nomenclature-types-state-classes"></a>State Classes
 
@@ -156,10 +157,7 @@ HN infixes: `is`, `has`, etc.
 
 ###### Notes
 
-State Classes are glorified, free-standing [modifiers](#scss-nomenclature-modifiers) denoting differences in a [block's](#scss-nomenclature-blocks) state, such as being hovered, toggled, disabled, etc.  
-    Separating them from the classes they modify aims to make their usage more generic.  
-    It also allows them to be used across a [class structure](#scss-nomenclature-anatomy-note) without breaking the [proscription against directly modifying](#scss-composition-rules-modifying-elements) a [block's](#scss-nomenclature-blocks) [elements](#scss-nomenclature-elements).  
-    Importantly, in the case of naturally occurring states, such as hovered, disabled, etc., they provide an interface for applying, and framework for definitively dealing with, styles *not to be* bound to :pseudo-selectors whose presence, in practice, may or may not actually conform to an element's intended presentational state, or for that matter even occur on the element at all, either because the element type does not support it as in the case of complex, artificial input controls, etc., or because the :pseudo-selectors do not exist as in the case of toggled, open, etc.
+State Classes are glorified, free-standing [modifiers](#scss-nomenclature-modifiers) denoting differences in a [block's](#scss-nomenclature-blocks) state, such as being hovered, toggled, disabled, etc. Separating them from the classes they modify aims to make their usage more generic. It also allows them to be used across a [class structure](#scss-nomenclature-anatomy-note) without breaking the [proscription against directly modifying](#scss-composition-rules-modifying-elements) a [block's](#scss-nomenclature-blocks) [elements](#scss-nomenclature-elements). Importantly, in the case of naturally occurring states, such as hovered, disabled, etc., they provide an interface for applying, and framework for definitively grappling with, styles *not to be* bound to the :pseudo-selectors whose presence, in practice, may or may not actually conform to an element's intended presentational state, or for that matter even occur on the element at all as in the case of complex, artificial input controls, etc.
 
 State Classes are generally programmatically applied, with rare exception.
 
@@ -403,8 +401,7 @@ Quoted property values should use only double-quotes `"`.
 
 ###### <a name="scss-file-structure-properties-classes-static"></a>Static
 
-Static props never change, no matter the config, theme or state. **On [Components](#scss-nomenclature-types-components)** they should be replaced by [Utilities](#scss-nomenclature-types-utilities), or [Objects](#scss-nomenclature-types-objects) where it makes sense to do so.  
-    For more information, see [§Composition.ClassTypes.Utilities](#scss-composition-utilities).
+Static props never change, no matter the config, theme or state. **On [Components](#scss-nomenclature-types-components)** they should be replaced by [Utilities](#scss-nomenclature-types-utilities), or [Objects](#scss-nomenclature-types-objects) where it makes sense to do so. For more information, see [§Composition.ClassTypes.Utilities](#scss-composition-utilities).
 
 Static props often include [**abstract** properties](#scss-file-structure-properties-order-abstract), such as `overflow`, `display`, etc; however, any prop is technically configurable. Whether a prop is configurable depends upon whether the [class structure](#scss-nomenclature-anatomy-note) using it requires it to change at all across variants, themes or states; in practice, however, an unchanging prop is assumed to be configurable unless it has a generic value, such as `margin: 0`, or `top: 100%`; but, ultimately, whether a value is generic must be determined on a case-by-case basis.
 
@@ -418,8 +415,7 @@ Config props often include `margin`, `padding`, `font-size`, etc.
 
 Theme props are typically any **visual** properties, configurable across a [class structure's](#scss-nomenclature-anatomy-note) (potential) [themes](#scss-file-structure-variant-theme-modifiers).
 
-Unlike Config props, something considered a Theme prop is *always* a Theme prop, with rare exception, regardless of whether the [class structure](#scss-nomenclature-anatomy-note) would otherwise configure it.  
-    <a name="scss-file-structure-properties-classes-theme-inheritance"></a>Spatial prop inheritance is generally flat; whereas visual prop definitions derive through chains of successively more lower-level theme [maps](#scss-tokens), to allow for more nuanced and powerful control over the theme's expression in the UI. In short, visual props tend toward being universal, and propagate overtop the more often instance-specific spatial props.
+Unlike Config props, something considered a Theme prop is *always* a Theme prop, with rare exception, regardless of whether the [class structure](#scss-nomenclature-anatomy-note) would otherwise configure it. <a name="scss-file-structure-properties-classes-theme-inheritance"></a>Spatial prop inheritance is generally flat; whereas visual prop definitions derive through chains of successively more lower-level theme [maps](#scss-tokens), to allow for more nuanced and powerful control over the theme's expression in the UI. In short, visual props tend toward being universal, and propagate overtop the more often instance-specific spatial props.
 
 Theme props include `border`, `line-height`, `color`, etc.
 
