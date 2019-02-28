@@ -233,11 +233,11 @@ An Object's [Static props](#scss-file-structure-properties-classes-static) **may
 [State Classes](#scss-nomenclature-types-state-classes) should not be assigned styles except in composition.
 
 ```scss
-.cn-x-block.cn-is-disabled {...} // Valid
+.cn-x-block.cn-is-state {...} // Valid
 ```
 
 ```scss
-.cn-is-disabled {...} // Invalid
+.cn-is-state {...} // Invalid
 ```
 
 #### <a href="#scss-composition-examples" name="scss-composition-examples">#</a> Examples
