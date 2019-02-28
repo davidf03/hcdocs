@@ -216,6 +216,8 @@ For element modification, see [§Nomenclature.BEMModifiedElements](#scss-nomencl
 
 [State Classes](#scss-nomenclature-types-state-classes) may directly modify [elements](#scss-nomenclature-elements); however, this should be avoided, and the state description simplified to the [block](#scss-nomenclature-blocks) level, wherever possible.
 
+[Class structures](#scss-nomenclature-anatomy-note) referencing other class structures should be avoided at all costs. In most cases it should be possible to extend a class structure to provide itself interfaces for accessing subordinated structures.
+
 #### <a href="#scss-composition-class-types" name="scss-composition-class-types">#</a> Class Types
 
 ##### <a name="scss-composition-objects"></a>Objects
