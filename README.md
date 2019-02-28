@@ -161,7 +161,13 @@ HN infixes: `is`, `has`, etc.
 
 ###### Notes
 
-State Classes are glorified, free-standing [modifiers](#scss-nomenclature-modifiers) denoting differences in a [block's](#scss-nomenclature-blocks) state, such as being hovered, toggled, disabled, etc. Separating them from the classes they modify aims to make their usage more generic. It also allows them to be used across a [class structure](#scss-nomenclature-anatomy-note) without breaking the [proscription against directly modifying](#scss-composition-rules-modifying-elements) a [block's](#scss-nomenclature-blocks) [elements](#scss-nomenclature-elements). Importantly, in the case of naturally occurring states, such as hovered, disabled, etc., they provide an interface for applying, and framework for definitively grappling with, styles *not to be* bound to the :pseudo-selectors whose presence, in practice, may or may not actually conform to an element's intended presentational state, or for that matter even occur on the element at all as in the case of complex, artificial input controls, etc.
+State Classes are glorified, free-standing [modifiers](#scss-nomenclature-modifiers) denoting differences in a [block's](#scss-nomenclature-blocks) state, such as being hovered, toggled, disabled, etc.
+
+Separating State Classes from the [class structures](#scss-nomenclature-anatomy-note) they modify aims to make their usage more generic. It also allows them to be used across a structure without breaking the [proscription against directly modifying](#scss-composition-rules-modifying-elements) a [block's](#scss-nomenclature-blocks) [elements](#scss-nomenclature-elements), and between structures without breaking the [proscription against inter-structure referencing](#scss-composition-rules-inter-referencing).
+
+In the case of naturally occurring states, such as hovered, disabled, etc., they provide an interface for applying, and framework for definitively grappling with, styles *not to be* bound to the :pseudo-selectors whose presence in practice may or may not *actually* conform to an element's intended presentational state, or for that matter even occur on the element at all as in the case of complex, artificial input controls, etc.
+
+Additionally, artificial states not based on any :pseudo-selectors may be defined using the same nomenclature. As these states are not formally specced, effort should be made to find names as generic as possible to help maintain [strict boundaries](#scss-composition-rules-inter-referencing) between [class structures](#scss-nomenclature-anatomy-note).
 
 State Classes are generally programmatically applied, with rare exception.
 
@@ -214,9 +220,11 @@ Selectors must be as flat as possible, with the exception of :pseudo-selectors a
 <a name="scss-composition-rules-modifying-elements"></a>[Modifiers](#scss-nomenclature-modifiers), including those for variants and themes, may be applied **only** to [blocks](#scss-nomenclature-blocks), i.e. **never** to [elements](#scss-nomenclature-elements).
 For element modification, see [§Nomenclature.BEMModifiedElements](#scss-nomenclature-modified-elements) and [§FileStructure.VariantAndThemeModifierClasses](#scss-file-structure-variant-theme-modifiers).
 
-[State Classes](#scss-nomenclature-types-state-classes) may directly modify [elements](#scss-nomenclature-elements); however, this should be avoided, and the state description simplified to the [block](#scss-nomenclature-blocks) level, wherever possible.
+[<a name="scss-composition-rules-element-states"></a>State Classes](#scss-nomenclature-types-state-classes) may directly modify [elements](#scss-nomenclature-elements); however, this should be avoided, and the state description simplified to the [block](#scss-nomenclature-blocks) level, wherever possible.
 
-[Class structures](#scss-nomenclature-anatomy-note) referencing other class structures should be avoided at all costs. In most cases it should be possible to extend a class structure to provide itself interfaces for accessing subordinated structures.
+<a name="scss-composition-rules-inter-referencing"></a>[Class structures](#scss-nomenclature-anatomy-note) referencing other class structures should be **avoided at all costs**. In most cases it should be possible to extend a class structure to provide itself interfaces for accessing subordinated structures. One structure should never need access to another's [elements](#scss-nomenclature-elements) or [modifiers](#scss-nomenclature-modifiers); however, [State Classes](#scss-nomenclature-types-state-classes) follow essentially the same [rule as for elements](#scss-composition-rules-element-states), with simplification similarly aimed away from the (super-structure) element and toward the (sub-structure) [block](#scss-nomenclature-blocks). The resulting file structure would be modelled no differently from the one illustrated below in [§FileStructure.GeneralStructureAndFormatting](#scss-file-structure-general).
+
+Relational selectors should select elements of blocks, not blocks themselves, to avoid unnecessarily connecting any two class structures.
 
 #### <a href="#scss-composition-class-types" name="scss-composition-class-types">#</a> Class Types
 
