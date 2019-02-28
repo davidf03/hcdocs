@@ -148,8 +148,7 @@ For more information, see [§Composition.ClassTypes.Utilities](#scss-composition
 ###### <a name="scss-nomenclature-types-utilities-orders"></a>Orders
 
 Whereas the order of other [class-structures](#scss-nomenclature-anatomy-note) depends upon the number of class selectors present, the distinction between 'higher-' and 'lower-order' Utilities depends, by analogy, upon the number of properties present, with lower-order Utilities containing only one property, and higher- more than one.
-
-Classifying Utilities in this way also hints at a soft but useful benchmark helping to delineate between Utilities and lower-order Objects.
+	Classifying Utilities in this way also hints at a soft but useful benchmark helping to delineate between Utilities and lower-order Objects.
 
 ##### <a name="scss-nomenclature-types-state-classes"></a>State Classes
 
@@ -157,7 +156,10 @@ HN infixes: `is`, `has`, etc.
 
 ###### Notes
 
-State Classes are glorified, free-standing [modifiers](#scss-nomenclature-modifiers) denoting differences in a [block's](#scss-nomenclature-blocks) state, such as being hovered, toggled, disabled, etc. Separating them from the classes they modify aims to make their usage more generic. It also allows them to be used across a [class structure](#scss-nomenclature-anatomy-note) without breaking the [proscription against directly modifying](#scss-composition-rules-modifying-elements) a [block's](#scss-nomenclature-blocks) [elements](#scss-nomenclature-elements). Importantly, in the case of naturally occurring states, such as hovered, disabled, etc., they provide an interface for applying, and framework for definitively grappling with, styles *not to be* bound to the :pseudo-selectors whose presence, in practice, may or may not actually conform to an element's intended presentational state, or for that matter even occur on the element at all as in the case of complex, artificial input controls, etc.
+State Classes are glorified, free-standing [modifiers](#scss-nomenclature-modifiers) denoting differences in a [block's](#scss-nomenclature-blocks) state, such as being hovered, toggled, disabled, etc.
+	Separating them from the classes they modify aims to make their usage more generic.
+	It also allows them to be used across a [class structure](#scss-nomenclature-anatomy-note) without breaking the [proscription against directly modifying](#scss-composition-rules-modifying-elements) a [block's](#scss-nomenclature-blocks) [elements](#scss-nomenclature-elements).
+	Importantly, in the case of naturally occurring states, such as hovered, disabled, etc., they provide an interface for applying, and framework for definitively dealing with, styles *not to be* bound to :pseudo-selectors whose presence, in practice, may or may not actually conform to an element's intended presentational state, or for that matter even occur on the element at all, either because the element type does not support it as in the case of complex, artificial input controls, etc., or because the :pseudo-selectors do not exist as in the case of toggled, open, etc.
 
 State Classes are generally programmatically applied, with rare exception.
 
