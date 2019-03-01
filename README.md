@@ -1222,7 +1222,6 @@ Any props essential for the component to function, e.g. a table row's `:row` dat
           { 'conditional class list': classCondition }]"
 >
   ...
-</tag>
 ```
 
 #### <a href="#vue-component-instance-class-attribute" name="vue-component-instance-class-attribute">#</a> Class Attribute
