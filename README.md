@@ -1194,30 +1194,30 @@ Any props essential for the component to function, e.g. a table row's `:row` dat
   :disabled="disabled"
 
   @click="onClick"
-	@keydown.enter="onEnter"
+  @keydown.enter="onEnter"
+  ...
+
+  @focus="onFocus"
+  @blur="onBlur"
 	...
 
-	@focus="onFocus"
-	@blur="onBlur"
+  :componentProp="componentProp"
 	...
 
-	:componentProp="componentProp"
-	...
+  :id="id"
+  :type="type"
+  :autocomplete="autocomplete"
+  :placeholder="placeholder"
+  ...
 
-	:id="id"
-	:type="type"
-	:autocomplete="autocomplete"
-	:placeholder="placeholder"
-	...
-
-	:tabindex="tabindex"
-	:aria-labelledby="label"
-	aria-haspopup="true"
-	...
+  :tabindex="tabindex"
+  :aria-labelledby="label"
+  aria-haspopup="true"
+  ...
 
   :variant="variant"
-	:componentClassList="componentClassList"
-	:class="['static class list',
+  :componentClassList="componentClassList"
+  :class="['static class list',
           componentPropClassList,
           { 'conditional class list': classCondition }]"
 >
