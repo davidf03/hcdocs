@@ -1051,14 +1051,14 @@ Directives should be placed specially on the same line as the tag name.
 
 ```vue
 <tag v-if="condition"
-	...
+  ...
 ```
 
 For `<transition>` tags, the name attribute may be placed similarly to directives.
 
 ```vue
 <transition name="name"
-	...
+  ...
 ```
 
 All attribute values should be surrounded by quotes.
@@ -1071,7 +1071,7 @@ Malformed formatting example
 
 ```vue
 <div
-	attribute="value">
+  attribute="value">
   ...
 </div>
 ```
