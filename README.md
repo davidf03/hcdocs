@@ -167,11 +167,11 @@ State Classes are glorified, free-standing [modifiers](#scss-nomenclature-modifi
 
 State Classes are generally programmatically applied, with rare exception.
 
-Separating State Classes from the [class structures](#scss-nomenclature-anatomy-note) they modify aims to make their usage more generic. It also allows them to be used across a structure without breaking the [proscription against directly modifying](#scss-composition-rules-modifying-elements) a [block's](#scss-nomenclature-blocks) [elements](#scss-nomenclature-elements), and between structures without breaking the [one against inter-structure referencing](#scss-composition-rules-inter-referencing).
+Separating State Classes from the [class structures](#scss-nomenclature-anatomy-note) they modify aims to make their usage more generic than regular [modifiers](#scss-nomenclature-modifiers). It also allows them to be used across a structure without breaking the [proscription against directly modifying](#scss-composition-rules-modifying-elements) a [block's](#scss-nomenclature-blocks) [elements](#scss-nomenclature-elements), and between structures without breaking the [one against inter-structure referencing](#scss-composition-rules-inter-referencing).
 
-In the case of naturally occurring states, such as hovered, disabled, etc., they provide an interface for applying, and framework for definitively grappling with, styles *not to be* bound to :pseudo-selectors whose presence in practice may or may not *actually* conform to an element's intended presentational state, or for that matter even occur on the element at all as in the case of complex, artificial input controls, etc.
+In the case of naturally occurring states, such as hovered, disabled, etc., they provide an interface for applying, and framework for definitively grappling with, styles *not to be* bound to :pseudo-selectors whose presence in practice may or may not *actually* conform to a DOM structure's intended presentational state, or for that matter even occur on the DOM structure at all as in the case of complex, artificial input controls, etc.
 
-Additionally, artificial states not based on any :pseudo-selectors may be defined using the same nomenclature. As these states are not formally specced, effort should be made to find names as generic as possible to help maintain [strict boundaries](#scss-composition-rules-inter-referencing) between [class structures](#scss-nomenclature-anatomy-note).
+Additionally, artificial states not based on any :pseudo-selectors may be defined using the same nomenclature (see examples 3 and 4 below). As these states are not formally specced, effort should be made to find names as generic as possible to help maintain [strict boundaries](#scss-composition-rules-inter-referencing) between [class structures](#scss-nomenclature-anatomy-note).
 
 ###### Examples
 
