@@ -98,6 +98,8 @@ After this point in the document, the term *class structure* refers to any set o
 
 <a name="scss-nomenclature-anatomy-note-orders"></a>A class-structure consisting of only one class selector, i.e. its [block](#scss-nomenclature-blocks), is considered to be *lower-order*; all other class structures are considered *higher-order*. For orders of Utilities, see [§ClassTypes.Utilities.Orders](#scss-nomenclature-types-utilities-orders).
 
+*<a name="scss-nomenclature-anatomy-note-levels"></a>Super-* and *sub-structures* refer to [composed](#scss-composition-note) class structures, typically [Components](#scss-nomenclature-types-components), which actively interact with each other.
+
 #### <a href="#scss-nomenclature-types" name="scss-nomenclature-types">#</a> Class Types
 
 ##### <a name="scss-nomenclature-types-objects"></a>Objects
@@ -163,13 +165,13 @@ HN infixes: `is`, `has`, etc.
 
 State Classes are glorified, free-standing [modifiers](#scss-nomenclature-modifiers) denoting differences in a [block's](#scss-nomenclature-blocks) state, such as being hovered, toggled, disabled, etc.
 
+State Classes are generally programmatically applied, with rare exception.
+
 Separating State Classes from the [class structures](#scss-nomenclature-anatomy-note) they modify aims to make their usage more generic. It also allows them to be used across a structure without breaking the [proscription against directly modifying](#scss-composition-rules-modifying-elements) a [block's](#scss-nomenclature-blocks) [elements](#scss-nomenclature-elements), and between structures without breaking the [one against inter-structure referencing](#scss-composition-rules-inter-referencing).
 
 In the case of naturally occurring states, such as hovered, disabled, etc., they provide an interface for applying, and framework for definitively grappling with, styles *not to be* bound to :pseudo-selectors whose presence in practice may or may not *actually* conform to an element's intended presentational state, or for that matter even occur on the element at all as in the case of complex, artificial input controls, etc.
 
 Additionally, artificial states not based on any :pseudo-selectors may be defined using the same nomenclature. As these states are not formally specced, effort should be made to find names as generic as possible to help maintain [strict boundaries](#scss-composition-rules-inter-referencing) between [class structures](#scss-nomenclature-anatomy-note).
-
-State Classes are generally programmatically applied, with rare exception.
 
 ###### Examples
 
@@ -220,9 +222,9 @@ Selectors must be as flat as possible, with the exception of :pseudo-selectors a
 <a name="scss-composition-rules-modifying-elements"></a>[Modifiers](#scss-nomenclature-modifiers), including those for variants and themes, may be applied **only** to [blocks](#scss-nomenclature-blocks), i.e. **never** to [elements](#scss-nomenclature-elements).
 For element modification, see [§Nomenclature.BEMModifiedElements](#scss-nomenclature-modified-elements) and [§FileStructure.VariantAndThemeModifierClasses](#scss-file-structure-variant-theme-modifiers).
 
-[<a name="scss-composition-rules-element-states"></a>State Classes](#scss-nomenclature-types-state-classes) may directly modify [elements](#scss-nomenclature-elements); however, this should be avoided, and the state description simplified to the [block](#scss-nomenclature-blocks) level, wherever possible.
+<a name="scss-composition-rules-element-states"></a>[State Classes](#scss-nomenclature-types-state-classes) may directly modify [elements](#scss-nomenclature-elements); however, this should be avoided, and the state description simplified to the [block](#scss-nomenclature-blocks) level, wherever possible.
 
-<a name="scss-composition-rules-inter-referencing"></a>[Class structures](#scss-nomenclature-anatomy-note) referencing other class structures should be **avoided at all costs**. In most cases it should be possible to extend a class structure to provide itself interfaces for accessing subordinated structures. One structure should never need access to another's [elements](#scss-nomenclature-elements) or [modifiers](#scss-nomenclature-modifiers); however, [State Classes](#scss-nomenclature-types-state-classes) follow essentially the same [rule as for elements](#scss-composition-rules-element-states), with simplification similarly aimed away from the (super-structure) element and toward the (sub-structure) [block](#scss-nomenclature-blocks). The resulting file structure would be modelled no differently from the one illustrated below in [§FileStructure.GeneralStructureAndFormatting](#scss-file-structure-general).
+<a name="scss-composition-rules-inter-referencing"></a>[Class structures](#scss-nomenclature-anatomy-note) referencing other class structures should be **avoided at all costs**. In most cases it should be possible to extend a class structure to provide itself interfaces for accessing subordinated structures. One structure should never need access to another's [elements](#scss-nomenclature-elements) or [modifiers](#scss-nomenclature-modifiers). [State Classes](#scss-nomenclature-types-state-classes) are an exception to this rule. For more information on composition with State Classes, see [§ClassTypes.StateClasses](#scss-composition-state-classes) below.
 
 Relational selectors should select elements of blocks, not blocks themselves, to avoid unnecessarily connecting any two class structures.
 
@@ -230,11 +232,11 @@ Relational selectors should select elements of blocks, not blocks themselves, to
 
 ##### <a name="scss-composition-objects"></a>Objects
 
-In principle, [Object](#scss-nomenclature-types-objects) declarations should not overlap each other, and Object composition should have as much overlap as possible.
+In principle, [Object](#scss-nomenclature-types-objects) intent should not overlap each other, and Object composition should have as much overlap as possible.
 
 ##### <a name="scss-composition-components"></a>Components
 
-Unlike Objects, [Components](#scss-nomenclature-types-components) are strictly forbidden from overlapping in composition; however, like Objects, Component declarations should also not overlap each other; anywhere Components overlap is an opportunity to relegate styles to an Object.
+Unlike Objects, [Components](#scss-nomenclature-types-components) are strictly forbidden from overlapping in composition; however, like Objects, Component intent should also not overlap each other; anywhere Components overlap is an opportunity to relegate styles to an Object.
 
 ##### <a name="scss-composition-utilities"></a>Utilities
 
@@ -253,6 +255,30 @@ An Object's [Static props](#scss-file-structure-properties-classes-static) **may
 ```css
 .cn-is-state {...} /* Invalid */
 ```
+
+Monitoring [sub-structure](#scss-nomenclature-anatomy-note-levels) state is possible by placing [interface elements](#scss-composition-rules-inter-referencing) onto the sub-structure wherever its state is defined and watching for the presence of [State Classes](#scss-nomenclature-types-state-classes) through those [elements](#scss-nomenclature-elements). The resulting SCSS file structure would be modelled no differently from the one illustrated in [§FileStructure.GeneralStructureAndFormatting](#scss-file-structure-general).
+
+```html
+<tag class="cn-x-super">
+  <tag class="cn-x-super__element cn-x-sub cn-is-state"></tag>
+</tag>
+```
+
+```scss
+.cn-x-super {
+  &__element { // cn-x-sub
+    &.cn-is-state {...} // cn-x-sub in state
+  }
+}
+```
+
+If Vue component boundaries separate the structures, the sub-component's API might define [prop class lists](#vue-component-instance-class-attribute-groups-props) for passing in interface elements; however, **in most cases** no API is even needed, as the block of [Component](#scss-nomenclature-types-components) class structures often sits at the root of the Vue component, allowing [interface elements](#scss-composition-rules-inter-referencing) to be placed as [static classes](#vue-component-instance-class-attribute-groups-static) onto the Vue component instance.
+
+Using [interface elements](#scss-composition-rules-inter-referencing) to monitor [sub-structure](#scss-nomenclature-anatomy-note-levels) state may seem unwieldy, and at odds with rules of [Component composition](#scss-composition-components), but, given that a [class structure's](#scss-nomenclature-anatomy-note) state [ought to be defined](#scss-composition-rules-element-states) on its [block](#scss-nomenclature-blocks), super- and sub-structures only ever end up adjacent to one another, rather than mixed.
+
+Composition of [super-structures](#scss-nomenclature-anatomy-note-levels) and sub-structure [State Classes](#scss-nomenclature-types-state-classes) using [interface elements](#scss-composition-rules-inter-referencing) follows essentially the same [rule as for element states](#scss-composition-rules-element-states), with simplification of the state description (and styles) similarly aimed away from the (super-structure) [element](#scss-nomenclature-elements) and toward the (sub-structure) [block](#scss-nomenclature-blocks)
+
+In contrast to monitoring, [super-structures](#scss-nomenclature-anatomy-note-levels) should not attempt to influence sub-structure state presentation. Instead, [State Classes](#scss-nomenclature-types-state-classes) may be applied programmatically and synchronously to all relevant points, or, if Vue component boundaries separate the structures, through [dynamic modifiers](#vue-component-instance-class-attribute-groups-mods) or [prop class lists](#vue-component-instance-class-attribute-groups-props).
 
 #### <a href="#scss-composition-examples" name="scss-composition-examples">#</a> Examples
 
@@ -1175,15 +1201,17 @@ Any props essential for the component to function, e.g. a table row's `:row` dat
 3. Prop Class Lists
 4. Conditional Class Lists
 
-###### Static Classes
+###### <a name="vue-component-instance-class-attribute-groups-static"></a>Static Classes
 
 Static classes are always present on a tag.
 
-###### Dynamic Modifiers
+###### <a name="vue-component-instance-class-attribute-groups-mods"></a>Dynamic Modifiers
 
-Dynamic [modifiers](#scss-nomenclature-modifiers), classes constructed in part from values passed into the component as props, such as those used for accessing a [class structure's](#scss-nomenclature-anatomy-note) [variants or themes](#scss-file-structure-variant-theme-modifiers), are best treated the same as Prop Class Lists after being stored in variables in the component's `data()` or `computed` objects.
+Dynamic [modifiers](#scss-nomenclature-modifiers) are classes constructed in part from values passed into the component as props, such as those used for accessing a [class structure's](#scss-nomenclature-anatomy-note) [variants or themes](#scss-file-structure-variant-theme-modifiers) or its states.
 
-###### Prop Class Lists
+They are best treated the same as Prop Class Lists after being stored in variables in the component's `data()` or `computed` objects.
+
+###### <a name="vue-component-instance-class-attribute-groups-props"></a>Prop Class Lists
 
 Prop class lists are any class lists passed into the component as props and used as is.
 
