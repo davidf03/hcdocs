@@ -278,7 +278,7 @@ Using [interface elements](#scss-composition-rules-inter-referencing) to monitor
 
 Composition of [super-structures](#scss-nomenclature-anatomy-note-levels) and sub-structure [State Classes](#scss-nomenclature-types-state-classes) using [interface elements](#scss-composition-rules-inter-referencing) follows essentially the same [rule as for element states](#scss-composition-rules-element-states), with simplification of the state description (and styles) similarly aimed away from the (super-structure) [element](#scss-nomenclature-elements) and toward the (sub-structure) [block](#scss-nomenclature-blocks)
 
-In contrast to monitoring, [super-structures](#scss-nomenclature-anatomy-note-levels) should not attempt to influence sub-structure state presentation. Instead, [State Classes](#scss-nomenclature-types-state-classes) may be applied programmatically and synchronously to all relevant points, or, if Vue component boundaries separate the structures, through [dynamic modifiers](#vue-component-instance-class-attribute-groups-mods) or [prop class lists](#vue-component-instance-class-attribute-groups-props).
+In contrast to monitoring, [super-structures](#scss-nomenclature-anatomy-note-levels) should not attempt to influence sub-structure presentational states. Instead, [State Classes](#scss-nomenclature-types-state-classes) may be applied programmatically and synchronously to all relevant points or, if Vue component boundaries separate the structures, through [dynamic modifiers](#vue-component-instance-class-attribute-groups-mods) or [prop class lists](#vue-component-instance-class-attribute-groups-props).
 
 #### <a href="#scss-composition-examples" name="scss-composition-examples">#</a> Examples
 
