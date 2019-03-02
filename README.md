@@ -203,7 +203,7 @@ Selectors may not contain #id's.
 
 Selectors may not contain tags (excluding [base styles](#scss-directory-structure-files-base-styles)).
 
-The `!important` flag is reserved for [Utilities](#scss-nomenclature-types-state-classes) and [hacks](#scss-directory-structure-files-hacks).
+The `!important` flag is reserved for [Utilities](#scss-nomenclature-types-utilities) and [hacks](#scss-directory-structure-files-hacks).
 
 A classname may have at most two levels: [block](#scss-nomenclature-blocks) and \[sub-][element](#scss-nomenclature-elements)[s-set]. This is primarily to encourage the decoupling of styles and DOM.
 
