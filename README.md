@@ -94,7 +94,7 @@
 
 ##### <a name="scss-nomenclature-anatomy-note"></a>Note
 
-After this point in the document, the term *class structure* refers to any set of classes defined under a particular block, including the block itself, its elements and any compound selectors, such as those involving modifiers, pseudo-selectors, State Classes, etc.
+After this point in the document, the term *class structure* refers to any set of classes defined under a particular block, including the block itself, its elements and any compound selectors, such as those involving modifiers, :pseudo-classes, State Classes, etc.
 
 <a name="scss-nomenclature-anatomy-note-orders"></a>A class-structure consisting of only one class selector, i.e. its [block](#scss-nomenclature-blocks), is considered to be *lower-order*; all other class structures are considered *higher-order*. For orders of Utilities, see [§ClassTypes.Utilities.Orders](#scss-nomenclature-types-utilities-orders).
 
@@ -169,9 +169,9 @@ State Classes are generally programmatically applied, with rare exception.
 
 Separating State Classes from the [class structures](#scss-nomenclature-anatomy-note) they modify aims to make their usage more generic than regular [modifiers](#scss-nomenclature-modifiers). It allows them to be used across a structure without breaking the [proscription against directly modifying](#scss-composition-rules-modifying-elements) a [block's](#scss-nomenclature-blocks) [elements](#scss-nomenclature-elements), and between structures without breaking the [one against inter-structure referencing](#scss-composition-rules-inter-referencing).
 
-In the case of naturally occurring states, such as hovered, disabled, etc., they provide an interface for applying, and framework for definitively grappling with, styles *not to be* bound to :pseudo-selectors whose presence in practice may or may not *actually* conform to a DOM structure's intended presentational state, or for that matter even occur on the DOM structure at all as in the case of complex, artificial input controls, etc.
+In the case of naturally occurring states, such as hovered, disabled, etc., they provide an interface for applying, and framework for definitively grappling with, styles *not to be* bound to :pseudo-classes whose presence in practice may or may not *actually* conform to a DOM structure's intended presentational state, or for that matter even occur on the DOM structure at all as in the case of complex, artificial input controls, etc.
 
-Additionally, artificial states not based on any :pseudo-selectors may be defined using the same nomenclature (see examples 3 and 4 below). As these states are not formally specced, effort should be made to find names as generic as possible to help maintain [strict inter-structure referencing boundaries](#scss-composition-rules-inter-referencing) between [class structures](#scss-nomenclature-anatomy-note).
+Additionally, artificial states not based on any :pseudo-classes may be defined using the same nomenclature (see examples 3 and 4 below). As these states are not formally specced, effort should be made to find names as generic as possible to help maintain [strict inter-structure referencing boundaries](#scss-composition-rules-inter-referencing) between [class structures](#scss-nomenclature-anatomy-note).
 
 ###### Examples
 
@@ -205,7 +205,7 @@ Selectors may not contain tags (excluding [base styles](#scss-directory-structur
 
 A classname may have at most two levels: [block](#scss-nomenclature-blocks) and \[sub-][element](#scss-nomenclature-elements)[s-set]. This is primarily to encourage the decoupling of styles and DOM.
 
-Selectors must be as flat as possible, with the exception of :pseudo-selectors and [State Classes](#scss-nomenclature-types-state-classes): an [element's](#scss-nomenclature-elements) declaration should not need to be nested within, or a [modifier's](#scss-nomenclature-modifiers) declaration appended to, its [block](#scss-nomenclature-blocks) to apply its properties, even if this would render its styles incomplete; elements and modifiers should not be used outside of the context of their block.
+Selectors must be as flat as possible, with the exception of :pseudo-classes and [State Classes](#scss-nomenclature-types-state-classes): an [element's](#scss-nomenclature-elements) declaration should not need to be nested within, or a [modifier's](#scss-nomenclature-modifiers) declaration appended to, its [block](#scss-nomenclature-blocks) to apply its properties, even if this would render its styles incomplete; elements and modifiers should not be used outside of the context of their block.
 
 ```css
 /* Valid */
@@ -238,7 +238,7 @@ For element modification, see [§Nomenclature.BEMModifiedElements](#scss-nomencl
 }
 ```
 
-Relational selectors and :pseudo-selectors, such as `.c1 > .c2`, `:nth-child(n)`, etc., should select [elements](#scss-nomenclature-elements) of [blocks](#scss-nomenclature-blocks), not blocks themselves, to avoid unnecessarily connecting any two class structures.
+Selector combinators, such as `.c1 > .c2`, etc., and relational :pseudo-classes, such as, `:nth-child()`, etc., should select [elements](#scss-nomenclature-elements) of [blocks](#scss-nomenclature-blocks), not blocks themselves, to avoid unnecessarily connecting any two class structures.
 
 ```scss
 // Valid
@@ -369,7 +369,7 @@ All [Config](#scss-file-structure-properties-classes-config) and [Theme props](#
 3. Theme
 4. State
 
-(For the ordering collections of individual properties within classes, see [§Properties.PropertyOrder](#scss-file-structure-properties-order).)
+(For ordering collections of individual properties within classes, see [§Properties.PropertyOrder](#scss-file-structure-properties-order).)
 
 #### <a href="#scss-file-structure-general" name="scss-file-structure-general">#</a> General Structure and Formatting
 
@@ -389,9 +389,9 @@ All [Config](#scss-file-structure-properties-classes-config) and [Theme props](#
   // Theme
   // [Theme props]
   
-  // State [State props, state pseudo-selectors, state selectors]
+  // State [State props, state :pseudo-classs, state selectors]
   // [(neutral) State props]
-  &:state-pseudo-selector {
+  &:state-pseudo-class {
     // [all Prop Classes, same as above]
   }
   &.cn-is-state {
@@ -403,15 +403,15 @@ All [Config](#scss-file-structure-properties-classes-config) and [Theme props](#
     // [all Prop Classes, same as above, incl. neutral State props]
     
     // State [element-specific state]
-    &:state-pseudo-selector {
+    &:state-pseudo-class {
       // [all Prop Classes, same as above]
     }
     &.cn-is-state {
 	    // [all Prop Classes, same as above]
     }
   }
-  // State [block state pseudo-selectors, block state classes]
-  &:state-pseudo-selector &__element {
+  // State [block state :pseudo-classs, block state classes]
+  &:state-pseudo-class &__element {
     // [all Prop Classes, same as above]
   }
   &.cn-is-state &__element {
@@ -433,25 +433,25 @@ For Static, Config, Theme and State property classes, see [§Properties.Property
   
   // Config
   &--v-variant-name {...}
-  &--v-variant-name:state-pseudo-selector {...}
+  &--v-variant-name:state-pseudo-class {...}
   &--v-variant-name.cn-is-state {...}
 
   // Theme
   &--t-theme-name {...}
-  &--t-theme-name:state-pseudo-selector {...}
+  &--t-theme-name:state-pseudo-class {...}
   &--t-theme-name.cn-is-state {...}
 
 
   &__element {...}
-  &:state-pseudo-selector &__element {...}
+  &:state-pseudo-class &__element {...}
   &.cn-is-state &__element {...}
   // Config
   &--v-variant-name &__element {...}
-  &--v-variant-name:state-pseudo-selector &__element {...}
+  &--v-variant-name:state-pseudo-class &__element {...}
   &--v-variant-name.cn-is-state &__element {...}
   // Theme
   &--t-theme-name &__element {...}
-  &--t-theme-name:state-pseudo-selector &__element {...}
+  &--t-theme-name:state-pseudo-class &__element {...}
   &--t-theme-name.cn-is-state &__element {...}
 
 }
