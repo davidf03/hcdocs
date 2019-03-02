@@ -203,6 +203,8 @@ Selectors may not contain #id's.
 
 Selectors may not contain tags (excluding [base styles](#scss-directory-structure-files-base-styles)).
 
+The `!important` flag is reserved for [Utilities](#scss-nomenclature-types-state-classes) and [hacks](#scss-directory-structure-files-hacks).
+
 A classname may have at most two levels: [block](#scss-nomenclature-blocks) and \[sub-][element](#scss-nomenclature-elements)[s-set]. This is primarily to encourage the decoupling of styles and DOM.
 
 Selectors must be as flat as possible, with the exception of :pseudo-classes and [State Classes](#scss-nomenclature-types-state-classes): an [element's](#scss-nomenclature-elements) declaration should not need to be nested within, or a [modifier's](#scss-nomenclature-modifiers) declaration appended to, its [block](#scss-nomenclature-blocks) to apply its properties, even if this would render its styles incomplete; elements and modifiers should not be used outside of the context of their block.
@@ -1012,7 +1014,7 @@ video {
 
 These files consolidate all [token maps](#scss-tokens). For the organization of maps within these files, see [§TokenMaps.FileStructure](#scss-tokens-file-structure).
 
-##### Hacks
+##### <a name="scss-directory-structure-files-hacks"></a>Hacks
 
 Hacks are last-minute additions which are not taken into account by the rest of the architecture and should be refactored with due consideration at the first opportunity. It is important to separate these selectors to avoid losing, first, their individual occurrences and, ultimately, at the extreme, control over the architecture.
 
