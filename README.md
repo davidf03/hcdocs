@@ -96,7 +96,7 @@
 
 After this point in the document, the term *class structure* refers to any set of classes defined under a particular block, including the block itself, its elements and any compound selectors, such as those involving modifiers, :pseudo-classes, State Classes, etc.
 
-<a name="scss-nomenclature-anatomy-note-orders"></a>A class-structure consisting of only one class selector, i.e. its [block](#scss-nomenclature-blocks), is considered to be *lower-order*; all other class structures are considered *higher-order*. For orders of Utilities, see [§ClassTypes.Utilities.Orders](#scss-nomenclature-types-utilities-orders).
+<a name="scss-nomenclature-anatomy-note-orders"></a>A class structure consisting of only one class selector, i.e. its [block](#scss-nomenclature-blocks), is considered to be *lower-order*; all other class structures are considered *higher-order*. For orders of Utilities, see [§ClassTypes.Utilities.Orders](#scss-nomenclature-types-utilities-orders).
 
 *<a name="scss-nomenclature-anatomy-note-levels"></a>Super-* and *sub-structures* refer to [composed](#scss-composition-note) class structures, typically [Components](#scss-nomenclature-types-components), which actively interact with each other.
 
@@ -153,7 +153,7 @@ For more information, see [§Composition.ClassTypes.Utilities](#scss-composition
 
 ###### <a name="scss-nomenclature-types-utilities-orders"></a>Orders
 
-Whereas the order of other [class-structures](#scss-nomenclature-anatomy-note) depends upon the number of class selectors present, the distinction between 'higher-' and 'lower-order' Utilities depends, by analogy, upon the number of properties present, with lower-order Utilities containing only one property, and higher- more than one.
+Whereas the order of other [class structures](#scss-nomenclature-anatomy-note) depends upon the number of class selectors present, the distinction between 'higher-' and 'lower-order' Utilities depends, by analogy, upon the number of properties present, with lower-order Utilities containing only one property, and higher- more than one.
 
 Classifying Utilities in this way also hints at a soft but useful benchmark helping to delineate between Utilities and lower-order Objects.
 
