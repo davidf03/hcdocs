@@ -224,7 +224,7 @@ Selectors must be as flat as possible, with the exception of :pseudo-classes and
 <a name="scss-composition-rules-modifying-elements"></a>[Modifiers](#scss-nomenclature-modifiers), including those for variants and themes, may be applied **only** to [blocks](#scss-nomenclature-blocks), i.e. **never** to [elements](#scss-nomenclature-elements).
 For element modification, see [§Nomenclature.BEMModifiedElements](#scss-nomenclature-modified-elements) and [§FileStructure.VariantAndThemeModifierClasses](#scss-file-structure-variant-theme-modifiers).
 
-<a name="scss-composition-rules-element-states"></a>[State Classes](#scss-nomenclature-types-state-classes) may directly modify [elements](#scss-nomenclature-elements); however, this should be avoided, and the state description simplified to the [block](scss-nomenclature-blocks) level, wherever possible. (See [§Nomenclature.ElementState](#scss-nomenclature-element-state))
+<a name="scss-composition-rules-element-states"></a>[State Classes](#scss-nomenclature-types-state-classes) may directly modify [elements](#scss-nomenclature-elements); however, this should be avoided and the state description simplified to the [block](scss-nomenclature-blocks) level wherever possible. (See [§Nomenclature.ElementState](#scss-nomenclature-element-state))
 
 <a name="scss-composition-rules-inter-referencing"></a>[Class structures](#scss-nomenclature-anatomy-note) referencing other class structures should be **avoided at all costs**. In most cases it should be possible to extend a class structure to provide itself interfaces for accessing subordinated structures. One structure should never need access to another's [elements](#scss-nomenclature-elements) or [modifiers](#scss-nomenclature-modifiers). [State Classes](#scss-nomenclature-types-state-classes) are an exception to this rule. For more information on composition with State Classes, see [§ClassTypes.StateClasses](#scss-composition-state-classes) below.
 
@@ -258,7 +258,7 @@ Selector combinators, such as `.c1 > .c2`, etc., and relational :pseudo-classes,
 }
 ```
 
-[Interface elements](#scss-composition-rules-inter-referencing) should be used to declare [block](#scss-nomenclature-blocks)-contextual styles. This helps to keep [class structures](#scss-nomenclature-anatomy-note) to stay recomposable.
+[Interface elements](#scss-composition-rules-inter-referencing) should be used to declare [block](#scss-nomenclature-blocks)-contextual styles. This helps to keep [class structures](#scss-nomenclature-anatomy-note) recomposable.
 
 #### <a href="#scss-composition-class-types" name="scss-composition-class-types">#</a> Class Types
 
@@ -272,7 +272,7 @@ Unlike Objects, [Components](#scss-nomenclature-types-components) are strictly f
 
 ##### <a name="scss-composition-utilities"></a>Utilities
 
-[Utilities](#scss-nomenclature-types-utilities) are meant to shoulder the burden of a Component [class structure's](#scss-nomenclature-anatomy-note) [Static props](#scss-file-structure-properties-classes-static) if and only if these props are, or are likely to be, used across multiple Components and no Object exists or can be declared to simplify their implementation across the architecture.
+[Utilities](#scss-nomenclature-types-utilities) are meant to shoulder the burden of a Component [class structure's](#scss-nomenclature-anatomy-note) [Static props](#scss-file-structure-properties-classes-static) if and only if these props are, or are likely to be, used across multiple Components and no Object exists, or can be declared, to simplify their implementation across the architecture.
 
 An Object's [Static props](#scss-file-structure-properties-classes-static) **may not** be replaced by Utilities.
 
@@ -306,7 +306,7 @@ An Object's [Static props](#scss-file-structure-properties-classes-static) **may
 
 *Note*: Using [interface elements](#scss-composition-rules-inter-referencing) to monitor [sub-structure](#scss-nomenclature-anatomy-note-levels) state may seem unwieldy, and at odds with rules of [Component composition](#scss-composition-components), but, given that a [class structure's](#scss-nomenclature-anatomy-note) state [ought to be defined](#scss-composition-rules-element-states) on its [block](#scss-nomenclature-blocks), super- and sub-structures only ever end up adjacent to one another, rather than mixed.
 
-If Vue component boundaries separate the structures, the sub-component's API might define [prop class lists](#vue-component-instance-class-attribute-groups-props) for passing in interface elements; however, **in most cases** no API is even needed, as the block of [Component](#scss-nomenclature-types-components) class structures often sits at the root of the Vue component, allowing [interface elements](#scss-composition-rules-inter-referencing) to be placed as [static classes](#vue-component-instance-class-attribute-groups-static) onto the Vue component instance.
+If Vue component boundaries separate the [structures](#scss-nomenclature-anatomy-note), the sub-component's API might define [prop class lists](#vue-component-instance-class-attribute-groups-props) for passing in [interface elements](#scss-composition-rules-inter-referencing); however, **in most cases** no API is even needed, as the block of [Component](#scss-nomenclature-types-components) class structures often sits at the root of the Vue component, allowing interface elements to be placed as [static classes](#vue-component-instance-class-attribute-groups-static) onto the Vue component instance.
 
 Composition of [super-structures](#scss-nomenclature-anatomy-note-levels) with sub-structure [State Classes](#scss-nomenclature-types-state-classes) using [interface elements](#scss-composition-rules-inter-referencing) follows essentially the same [rule as for element states](#scss-composition-rules-element-states), with simplification of the state description (and styles) similarly aimed away from the (super-structure) [element](#scss-nomenclature-elements) and toward the (sub-structure) [block](#scss-nomenclature-blocks).
 
@@ -364,7 +364,7 @@ All [Config](#scss-file-structure-properties-classes-config) and [Theme props](#
 
 <a name="scss-file-structure-rules-state-declarations"></a>State declarations should be ordered from lowest to highest in terms of priority to override others, with the disabled state generally being last.
 
-<a name="scss-file-structure-rules-property-classes"></a>[Property Classes](#scss-file-structure-properties-classes) should be set within a selector in the following order, and marked (with the exception of the [Static](#scss-file-structure-properties-classes-static) or only Class):
+<a name="scss-file-structure-rules-property-classes"></a>[Property Classes](#scss-file-structure-properties-classes) should be set within a selector in the following order, and marked (with the exception of the [Static Class](#scss-file-structure-properties-classes-static)):
 
 1. Static
 2. Config
@@ -1194,6 +1194,7 @@ Any props essential for the component to function, e.g. a table row's `:row` dat
   v-model="model"
   @change="onChange"
   :disabled="disabled"
+  ...
 
   @click="onClick"
   @keydown.enter="onEnter"
@@ -1219,6 +1220,7 @@ Any props essential for the component to function, e.g. a table row's `:row` dat
 
   :variant="variant"
   :componentClassList="componentClassList"
+  ...
   :class="['static class list',
           componentPropClassList,
           { 'conditional class list': classCondition }]"
