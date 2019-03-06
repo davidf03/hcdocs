@@ -383,7 +383,7 @@ All [Config](#scss-file-structure-properties-classes-config) and [Theme props](#
 
 
 .cn-x-block {
-  // [Static props]
+  // [Static and neutral State props]
   
   // Config
   // [Config props]
@@ -391,8 +391,7 @@ All [Config](#scss-file-structure-properties-classes-config) and [Theme props](#
   // Theme
   // [Theme props]
   
-  // State [State props, state :pseudo-classs, state selectors]
-  // [(neutral) State props]
+  // States [State props, state :pseudo-classs, state selectors]
   &:state-pseudo-class {
     // [all Prop Classes, same as above]
   }
@@ -402,9 +401,9 @@ All [Config](#scss-file-structure-properties-classes-config) and [Theme props](#
   
   
   &__element { // [elements]
-    // [all Prop Classes, same as above, incl. neutral State props]
+    // [all Prop Classes, same as above]
     
-    // State [element-specific state]
+    // States [element-specific state]
     &:state-pseudo-class {
       // [all Prop Classes, same as above]
     }
@@ -412,7 +411,7 @@ All [Config](#scss-file-structure-properties-classes-config) and [Theme props](#
 	    // [all Prop Classes, same as above]
     }
   }
-  // State [block state :pseudo-classs, block state classes]
+  // States [block state :pseudo-classs, block state classes]
   &:state-pseudo-class &__element {
     // [all Prop Classes, same as above]
   }
@@ -424,7 +423,7 @@ All [Config](#scss-file-structure-properties-classes-config) and [Theme props](#
 
 ```
 
-White space between selectors belongs to the following selectors. So, for example, if a [block](#scss-nomenclature-blocks) had only [elements](#scss-nomenclature-elements), there would still be 2 whitespace lines between the block selector and the first element.
+There should always be 2 whitespace lines between the first element and what comes before, even if what comes before is the block selector.
 
 For Static, Config, Theme and State property classes, see [§Properties.PropertyClasses](#scss-file-structure-properties-classes).
 
@@ -432,26 +431,33 @@ For Static, Config, Theme and State property classes, see [§Properties.Property
 
 ```scss
 .cn-x-block {
-  
-  // Config
-  &--v-variant-name {...}
-  &--v-variant-name:state-pseudo-class {...}
-  &--v-variant-name.cn-is-state {...}
+  // States
+  &:state-pseudo-class {...}
+  &.cn-is-state {...}
 
-  // Theme
-  &--t-theme-name {...}
-  &--t-theme-name:state-pseudo-class {...}
-  &--t-theme-name.cn-is-state {...}
+  // Variants
+  &--v-variant-name {
+    // States
+    &:state-pseudo-class {...}
+    &.cn-is-state {...}
+  }
+
+  // Themes
+  &--t-theme-name {
+    // States
+    &:state-pseudo-class {...}
+    &.cn-is-state {...}
+  }
 
 
   &__element {...}
   &:state-pseudo-class &__element {...}
   &.cn-is-state &__element {...}
-  // Config
+  // Variants
   &--v-variant-name &__element {...}
   &--v-variant-name:state-pseudo-class &__element {...}
   &--v-variant-name.cn-is-state &__element {...}
-  // Theme
+  // Themes
   &--t-theme-name &__element {...}
   &--t-theme-name:state-pseudo-class &__element {...}
   &--t-theme-name.cn-is-state &__element {...}
@@ -489,7 +495,7 @@ Theme props are typically any **visual** properties, configurable across a [clas
 
 Unlike Config props, something considered a Theme prop is *always* a Theme prop, with rare exception, regardless of whether the [class structure](#scss-nomenclature-anatomy-note) would otherwise configure it. <a name="scss-file-structure-properties-classes-theme-inheritance"></a>Spatial prop inheritance is generally flat; whereas visual prop definitions derive through chains of successively more lower-level theme [maps](#scss-tokens), to allow for more nuanced and powerful control over the theme's expression in the UI. In short, visual props tend toward being universal, and propagate overtop the more often instance-specific spatial props.
 
-Theme props include `border`, `line-height`, `color`, etc.
+Theme props include `border-radius`, `color`, etc.
 
 ###### State
 
@@ -526,38 +532,43 @@ This order is to be applied per implemented [Property Class](#scss-file-structur
 
 ###### <a name="scss-file-structure-properties-order-spatial"></a>Spatial
 
-1. `position`
-2. [offsets]
+1. `z-index`
+2. `position`
+3. [offsets]
    1. `top`
    2. `bottom`
    3. `left`
    4. `right`
-3. `margin`
+4. `transform`
+5. `margin`
    1. `margin-top`
    2. `margin-bottom`
    3. `margin-left`
    4. `margin-right`
-4. `padding`
+6. * `width`
+   * `height`
+7. `padding`
    1. `padding-top`
    2. `padding-bottom`
    3. `padding-left`
    4. `padding-right`
-5. `font-size`
-6. etc.
+8. `font-size`
+9. etc.
 
 ###### <a name="scss-file-structure-properties-order-visual"></a>Visual
 
-1. `border`
+1. `line-height`
+2. `border-radius`
+3. `border`
    1. `border-width`
    2. `border-style`
    3. `border-color`
-2. `line-height`
-3. * `font-weight`
+4. `background-color`
+5. * `font-weight`
    * `font-style`
    * `text-decoration`
-4. `background-color`
-5. etc.
-6. `color`
+6. etc.
+7. `color`
 
 ###### State
 
