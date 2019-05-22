@@ -793,11 +793,11 @@ $theme-btn-secondary: (
 
 #### <a href="#scss-tokens-inheritance" name="scss-tokens-inheritance">#</a> Inheritance
 
-Maps should be made to use other maps as a tree branches, with higher-level maps (higher with respect to configuration specificity - lower with respect to being the interface between tokens and implementing [patterns](#scss-nomenclature-terminology-pattern)) referencing lower-levels, where it makes sense to do so.
+Maps should be made to use other maps as a tree branches, with higher-level maps (higher with respect to configuration specificity - lower with respect to being the interface between tokens and implementing [patterns](#scss-nomenclature-terminology-pattern)) referencing lower-levels where it makes sense to do so.
 
 Inheritance is **not arbitrary** but should be an explicit representation of underlying patterns in the design of the UI.
 
-For a note contrasting typical [spatial](#scss-file-structure-properties-order-spatial) and [visual](#scss-file-structure-properties-order-visual) prop inheritance, see [§FileStructure.Properties.PropertyClasses.Theme, p.2](#scss-file-structure-properties-classes-theme-inheritance).
+For a note contrasting the typical character of [spatial](#scss-file-structure-properties-order-spatial) and of [visual](#scss-file-structure-properties-order-visual) prop inheritance, see [§FileStructure.Properties.PropertyClasses.Theme, p.2](#scss-file-structure-properties-classes-theme-inheritance).
 
 ##### Example
 
@@ -913,7 +913,7 @@ $third-unrelated-map: (
 
 ##### Order
 
-Maps should be ordered from low-level (abstract) to high-level (concrete), and should generally end up reflecting the order of the directory `main.scss` [import order](#scss-directory-structure-import-order). Assuming inheritance is well implemented, any deviated order would fail to compile.
+Maps should be ordered from low-level (abstract) to high-level (concrete), and should generally end up reflecting the order of the directory `main.scss` [import order](#scss-directory-structure-import-order). Assuming inheritance is well implemented, any deviating order would fail to compile.
 
 ------
 
