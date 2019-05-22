@@ -701,7 +701,7 @@ In the preceding example, `active fill` is effectively equivalent to `fill`.
 
 ###### Note
 
-If a `$token-chain` is thought to require progressive deletion not from its start but from some arbitrary point in the middle, the map has likely become too big and/or its tree does not organize properties correctly and should be refactored. Consider the following malformed, and corrected, examples:
+If a `$token-chain` is thought to require assimilation not from its start but from some arbitrary point in the middle, the map has likely become too big and/or its tree does not organize properties correctly and should be refactored. Consider the following malformed, and corrected, examples:
 
 Malformed Assimilation example
 
