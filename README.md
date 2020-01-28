@@ -135,7 +135,7 @@ For more information, see [§Composition.PatternTypes.Components](#scss-composit
 
 ##### <a name="scss-nomenclature-types-utilities"></a>Utilities
 
-HN infix: `o`, `l` (layout)
+HN infix: `u`, `l` (layout)
 
 ###### Anatomy
 
