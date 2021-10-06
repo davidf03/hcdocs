@@ -178,7 +178,7 @@ Separating State Classes from the [patterns](#scss-nomenclature-terminology-patt
 
 In the case of naturally occurring states, such as hovered, disabled, etc., they provide an interface for applying, and framework for definitively grappling with, styles *not to be* bound to :pseudo-classes whose presence in practice may or may not *actually* conform to a DOM tree's intended presentational state, or for that matter even occur at all as in the case of complex, artificial input controls, etc.
 
-Additionally, artificial states not based on any :pseudo-classes may be defined using the same nomenclature (see examples 3 and 4 below). As these states are not formally specced, effort should be made to find names as generic as possible to help maintain [strict inter-pattern referencing boundaries](#scss-composition-rules-inter-referencing).
+Additionally, artificial states not based on any :pseudo-classes may be defined using the same nomenclature (see examples 3 and 4 below). As these states are not formally spec'd, effort should be made to find names as generic as possible to help maintain [strict inter-pattern referencing boundaries](#scss-composition-rules-inter-referencing).
 
 ##### Examples
 
